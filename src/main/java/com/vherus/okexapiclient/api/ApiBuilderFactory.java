@@ -1,7 +1,10 @@
 package com.vherus.okexapiclient.api;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import feign.Feign;
 import feign.RequestInterceptor;
+import feign.jackson.JacksonDecoder;
+import feign.jackson.JacksonEncoder;
 
 class ApiBuilderFactory {
     private Context context;
@@ -11,7 +14,10 @@ class ApiBuilderFactory {
     }
 
     Feign.Builder createBuilder() {
-        Feign.Builder apiBuilder = Feign.builder();
+        ObjectMapper mapper = ObjectMapperFactory.make();
+        Feign.Builder apiBuilder = Feign.builder()
+                .encoder(new JacksonEncoder())
+                .decoder(new JacksonDecoder(mapper));
 
         RequestInterceptor interceptor = requestTemplate -> {
             requestTemplate.header("contentType", "application/x-www-form-urlencoded");
