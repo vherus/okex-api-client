@@ -1,6 +1,6 @@
 package com.vherus.okexapiclient.api;
 
-public class Context {
+class Context {
     private String baseUri;
     private String key;
     private String secret;
@@ -11,15 +11,15 @@ public class Context {
         this.secret = secret;
     }
 
-    public String getBaseUri() {
+    String getBaseUri() {
         return baseUri;
     }
 
-    public String getKey() {
+    String getKey() {
         return key;
     }
 
-    public String getSecret() {
+    String getSecret() {
         return secret;
     }
 }

@@ -1,9 +1,10 @@
 package com.vherus.okexapiclient.api;
 
-public class OkexClient {
-    private Context context;
+import feign.Feign;
 
-    OkexClient(Context context) {
-        this.context = context;
+public class OkexClient {
+    public OkexClient(Context context) {
+        ApiBuilderFactory builderFactory = new ApiBuilderFactory(context);
+        Feign.Builder apiBuilder = builderFactory.createBuilder();
     }
 }
